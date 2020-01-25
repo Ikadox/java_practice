@@ -50,20 +50,20 @@ public class YCNo24{
     private static void inputNumberArray(int turnNumber, int answer){
         String[] inputNumberArray = new String[4];
         Scanner scan = new Scanner(System.in);
-            for (int i = 0; i < turnNumber; i++) {
-                boolean isCorrect = false;
-                inputNumberArray = scan.nextLine().split(" ");
-                check:for (final String s : inputNumberArray) {
-                    int inputNumber = Integer.parseInt(s);
-                    if (inputNumber == answer) {
-                        isCorrect = true;
-                        System.out.println("yes");
-                        break check;
-                    }
-                }
-                if (!isCorrect) {
-                    System.out.println("no");
+        for (int i = 0; i < turnNumber; i++) {
+            boolean isCorrect = false;
+            inputNumberArray = scan.nextLine().split(" ");
+            check:for (final String s : inputNumberArray) {
+                int inputNumber = Integer.parseInt(s);
+                if (inputNumber == answer) {
+                    isCorrect = true;
+                    System.out.println("yes");
+                    break check;
                 }
             }
+            if (!isCorrect) {
+                System.out.println("no");
+            }
+        }
     }
 }
