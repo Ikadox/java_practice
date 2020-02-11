@@ -3,17 +3,23 @@ import java.util.Scanner;
 public class HelloWorld {
     public static void main (String[] args) {
         System.out.println("Hello World!");
+        tryWithResourceScanner();
+    }
 
-        String[] array = new String[2];
-        Scanner scan  = new Scanner(System.in);
-        for(int i=0; i<2; i++){
-            array = scan.nextLine().split(",");
-            System.out.print((i+1)+" : ");
-            for(String n: array){
-                System.out.print(n);
+    public static void tryWithResourceScanner(){
+        //try-with-resource構文によって、tryブロック終了時(finally時)に暗黙的にリソースをcloseする
+        try(Scanner scan = new Scanner(System.in)){
+            boolean flag = true;
+            System.out.println("If you wanna finish input, type word \"end\"");
+            while(flag){
+                System.out.print(">");
+                String line = scan.nextLine();
+                System.out.print("\n");
+                if(line.equals("end")){
+                    System.out.println("input end");
+                    flag = false;
+                }
             }
-            System.out.print("\n");
         }
-        scan.close();
     }
 }
