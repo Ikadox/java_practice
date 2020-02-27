@@ -1,4 +1,6 @@
+import java.util.HashSet;
 import java.util.Scanner;
+import java.util.Set;
 
 public class YCNo851 {
     public static void main(String[] args){
@@ -20,20 +22,17 @@ public class YCNo851 {
             }
 
             // 整数の加算
-            long[] addedIntegers = new long[calcPaternNumber(integers.length)];
-            int counter = 0;
+            Set<Long> addedIntegerSets = new HashSet<>();
             for(int i=0; i<inputCycleNumber-1; i++){
-                for(int j=i+1; j<inputCycleNumber; j++, counter++){
-                    addedIntegers[counter] = integers[i] + integers[j];
-                    if(counter > 0 && addedIntegers[counter-1] == addedIntegers[counter]){
-                        addedIntegers[counter] = -1;
-                    }
+                for(int j=i+1; j<inputCycleNumber; j++){
+                    addedIntegerSets.add(Long.valueOf(integers[i] + integers[j]));
                 }
             }
 
             // バブルソートで並び替え
-            for(int i=0; i<inputCycleNumber-1; i++){
-                for(int j=i+1; j<inputCycleNumber; j++ ){
+            Long[] addedIntegers = addedIntegerSets.toArray(new Long[addedIntegerSets.size()]);
+            for(int i=0; i<addedIntegers.length-1; i++){
+                for(int j=i+1; j<addedIntegers.length; j++ ){
                     if(addedIntegers[j] > addedIntegers[i]){
                         long tmp = addedIntegers[i];
                         addedIntegers[i] = addedIntegers[j];
@@ -69,18 +68,6 @@ public class YCNo851 {
         if(integerNumber > Math.pow(10, 10))
             return true;
         return false;
-    }
-    /**
-     * 整数の加算の組み合わせの数を算出
-     * @param inputNumber 配列の長さ
-     * @return
-     */
-    private static int calcPaternNumber(int inputNumber){
-        int paternNumber = 0;
-        for(int i = inputNumber-1 ; i > 0 ; i--){
-            paternNumber += i;
-        }
-        return paternNumber;
     }
     /**
      * 入力文字に空白が含まれていたらエラーを投げる
