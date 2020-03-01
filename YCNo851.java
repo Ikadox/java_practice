@@ -1,6 +1,5 @@
-import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
+import java.util.TreeSet;
 
 public class YCNo851 {
     public static void main(String[] args){
@@ -12,35 +11,25 @@ public class YCNo851 {
             }while(isNotInputCycleNumber(inputCycleNumber));
 
             // 整数を入力
-            long[] integers = new long[inputCycleNumber];
-            for(int i=0; i<inputCycleNumber; i++){
-                do {
-                    String input = scan.nextLine();
-                    inputFormatChecker(input);
-                    integers[i] = Long.parseLong(input);
-                }while(isNotIntegerNumberRange(integers[i]));
-            }
+            long[] longIntegers = new long[inputCycleNumber];
+            do{
+                for(int i=0; i<inputCycleNumber; i++){
+                    do {
+                        String input = scan.nextLine();
+                        inputFormatChecker(input);
+                        longIntegers[i] = Long.parseLong(input);
+                    }while(isNotIntegerNumberRange(longIntegers[i]));
+                }
+            }while(longIntegers[0] == longIntegers[inputCycleNumber-1]);
 
             // 整数の加算
-            Set<Long> addedIntegerSets = new HashSet<>();
+            TreeSet<Long> addedIntegerSets = new TreeSet<>();
             for(int i=0; i<inputCycleNumber-1; i++){
                 for(int j=i+1; j<inputCycleNumber; j++){
-                    addedIntegerSets.add(Long.valueOf(integers[i] + integers[j]));
+                    addedIntegerSets.add(Long.valueOf(longIntegers[i] + longIntegers[j]));
                 }
             }
-
-            // バブルソートで並び替え
-            Long[] addedIntegers = addedIntegerSets.toArray(new Long[addedIntegerSets.size()]);
-            for(int i=0; i<addedIntegers.length-1; i++){
-                for(int j=i+1; j<addedIntegers.length; j++ ){
-                    if(addedIntegers[j] > addedIntegers[i]){
-                        long tmp = addedIntegers[i];
-                        addedIntegers[i] = addedIntegers[j];
-                        addedIntegers[j] = tmp;
-                    }
-                }
-            }
-            System.out.println(addedIntegers[1]);
+            System.out.println(addedIntegerSets.lower(addedIntegerSets.last()));
         }catch(ArrayIndexOutOfBoundsException e){
             e.printStackTrace();
         }catch(InputFormnatException e){
@@ -59,13 +48,13 @@ public class YCNo851 {
     }
     /**
      * 入力数値の範囲確認
-     * @param integerNumber
+     * @param longIntegerNumber
      * @return
      */
-    private static boolean isNotIntegerNumberRange(long integerNumber){
-        if(integerNumber < 1)
+    private static boolean isNotIntegerNumberRange(long longIntegerNumber){
+        if(longIntegerNumber < 1)
             return true;
-        if(integerNumber > Math.pow(10, 10))
+        if(longIntegerNumber > Math.pow(10, 10))
             return true;
         return false;
     }
