@@ -24,7 +24,7 @@ public class YCNo116 {
      * @return
      */
     private static boolean isNotBambooNumberRange(int bambooNumber){
-        if(bambooNumber < 1 || bambooNumber > 100)
+        if(bambooNumber < 3 || bambooNumber > 100)
             return true;
         return false;
     }
@@ -35,7 +35,7 @@ public class YCNo116 {
      */
     private static boolean isNotHeightRange(int[] heightArray){
         for(int i : heightArray){
-            if( i < 0 || i > 100)
+            if( i < 1 || i > 100)
                 return true;
         }
         return false;
