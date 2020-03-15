@@ -18,16 +18,30 @@ public class YCNo5{
             do{
                 widthOfBlocks = parseIntArray(scan.nextLine().split(" "));
             }while(isNotBlocksWidthRange(widthOfBlocks, boxWidth));
-            
             Arrays.sort(widthOfBlocks);
-            int inBoxBlocks = 0;
-            for(int sumWidthBlocks = 0; inBoxBlocks < numberOfBlocks && sumWidthBlocks < boxWidth; inBoxBlocks++){
-                sumWidthBlocks += widthOfBlocks[inBoxBlocks];
-            }
-            System.out.println(inBoxBlocks-1);
+            System.out.println(calcBlocksInTheBox(widthOfBlocks, boxWidth, numberOfBlocks, 0, 0));
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+    /**
+     * 箱の中に何個のブロックが入るか算出する
+     * @param widthOfBlocks 各ブロックの幅が入った配列
+     * @param boxWidth 箱の幅
+     * @param numberOfBlocks ブロックの数
+     * @param inBoxBlocks 箱の中に入ったブロックの数
+     * @param sumWidthBlocks 箱の中に入れようとしているブロックの合計幅
+     * @return
+     */
+    private static int calcBlocksInTheBox(int[] widthOfBlocks, int boxWidth, int numberOfBlocks, int inBoxBlocks, int sumWidthBlocks){
+        if(inBoxBlocks < numberOfBlocks){
+            sumWidthBlocks += widthOfBlocks[inBoxBlocks];
+            if(sumWidthBlocks <= boxWidth){
+                inBoxBlocks++;
+                inBoxBlocks = calcBlocksInTheBox(widthOfBlocks, boxWidth, numberOfBlocks, inBoxBlocks, sumWidthBlocks);
+            }
+        }
+        return inBoxBlocks;
     }
     /**
      * String配列をint型配列に変換する
