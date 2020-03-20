@@ -4,27 +4,25 @@ import java.util.Scanner;
 
 public class YCNo586{
     public static void main(String[] args){
-        try{
-            Scanner scan = new Scanner(System.in);
-
+        try(Scanner scan = new Scanner(System.in)){
             int hotelCharge = 0;
             do{
-                hotelCharge = scan.nextInt();
+                hotelCharge = Integer.parseInt(scan.next());
             }while(!isChargeRange(hotelCharge));
 
             int transferCharge = 0;
             do{
-                transferCharge = scan.nextInt();
+                transferCharge = Integer.parseInt(scan.next());
             }while(!isChargeRange(transferCharge));
             
             int reservationNumber = 0;
             do{
-                reservationNumber = scan.nextInt();
+                reservationNumber = Integer.parseInt(scan.next());
             }while(!isReservationsRange(reservationNumber));
 
             HashMap<Integer, Integer> overlappingRoom = new HashMap<>();
             for(int i=0; i<reservationNumber; i++){
-                int roomNumber = scan.nextInt();
+                int roomNumber = Integer.parseInt(scan.next());
                 if(overlappingRoom.containsKey(roomNumber)){
                     overlappingRoom.put(roomNumber, overlappingRoom.get(roomNumber)+1);
                 }else{
