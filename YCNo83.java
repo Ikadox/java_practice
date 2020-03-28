@@ -38,15 +38,13 @@ public class YCNo83 {
         int minCost = displayCostMap.firstKey();
         int higherCost = displayCostMap.higherKey(minCost);
         
-        numberBuilder:while(minCost <= number){
-            if(1 == number - minCost){
+        while(minCost <= number){
+            if(1 == number % minCost){
                 displayNumber.append(displayCostMap.get(higherCost).stream().min(Comparator.naturalOrder()).get());
                 number -= higherCost;
-            }else if(1 < number - minCost || 0 == number - minCost){
+            }else{
                 displayNumber.append(displayCostMap.get(minCost).stream().min(Comparator.naturalOrder()).get());
                 number -= minCost;
-            }else{
-                break numberBuilder;
             }
         }
         return new String(displayNumber);
