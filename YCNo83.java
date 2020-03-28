@@ -40,10 +40,10 @@ public class YCNo83 {
         
         while(minCost <= number){
             if(1 == number % minCost){
-                displayNumber.append(displayCostMap.get(higherCost).stream().min(Comparator.naturalOrder()).get());
+                displayNumber.append(displayCostMap.get(higherCost).stream().max(Comparator.naturalOrder()).get());
                 number -= higherCost;
             }else{
-                displayNumber.append(displayCostMap.get(minCost).stream().min(Comparator.naturalOrder()).get());
+                displayNumber.append(displayCostMap.get(minCost).stream().max(Comparator.naturalOrder()).get());
                 number -= minCost;
             }
         }
