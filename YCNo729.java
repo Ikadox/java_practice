@@ -90,8 +90,7 @@ public class YCNo729 {
     private static String swap(String moji,int firstIndex, int secondIndex){
         char[] mojiChar = moji.toCharArray();
         char firstIndexChar = mojiChar[firstIndex];
-        char secondIndexChar = mojiChar[secondIndex];
-        mojiChar[firstIndex] = secondIndexChar;
+        mojiChar[firstIndex] = mojiChar[secondIndex];
         mojiChar[secondIndex] = firstIndexChar;
         return new String(mojiChar);
     }
