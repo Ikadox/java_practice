@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Aj11a_insertionSort {
+public class AJ11a_insertionSort {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         //limitation: 1 <= n <= 100
